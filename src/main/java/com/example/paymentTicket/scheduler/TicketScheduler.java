@@ -28,11 +28,12 @@ public class TicketScheduler {
         List<Ticket> tickets = ticketService.findTicketByStatus(TicketStatus.PROCESSED);
         for (Ticket ticket : tickets) {
             String status = ticketRequest.getStatus();
+            log.info("Try change status for ticket: " + ticket.getId());
             try {
                 if (!Strings.isNullOrEmpty(status)) {
                     ticket.setStatus(TicketStatus.valueOf(status));
                     ticketService.save(ticket);
-                    log.info("processing ticket:" + ticket.getId() + " set status:"+ status);
+                    log.info("processing ticket:" + ticket.getId() + " set status:" + status);
                 }
             } catch (Exception e) {
                 log.error("Not processing ticket" + ticket.getId());
