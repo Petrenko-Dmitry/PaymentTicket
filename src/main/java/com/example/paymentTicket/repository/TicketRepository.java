@@ -11,5 +11,7 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findTicketByStatus(TicketStatus status);
-    List<Ticket> findByClientIdAndDateOfDepartureAfter(String clientId, LocalDateTime dateTime);
+
+    List<Ticket> findByClientIdAndDateOfDepartureAfter(String clientId,
+                                                       LocalDateTime dateTime);
 }

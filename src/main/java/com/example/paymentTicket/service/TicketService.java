@@ -47,8 +47,10 @@ public class TicketService {
 
     public List<TicketDto> findByClientIdAndDate(String clientId, LocalDateTime date) {
         List<Ticket> tickets = ticketRepository.findByClientIdAndDateOfDepartureAfter(clientId, date);
-        List<TicketDto> ticketsDto = tickets.stream().map(ticketToTicketDto::convert).collect(Collectors.toList());
+        List<TicketDto> ticketsDto = tickets.stream().map(ticketToTicketDto::convert)
+                .collect(Collectors.toList());
         ticketsDto.sort(Comparator.comparing(TicketDto::getDateOfDeparture));
+
         return ticketsDto;
     }
 }
